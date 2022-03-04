@@ -6,16 +6,15 @@ class AnalisadorSintatico {
     void analisar(Stack<String> tokens) {
 
         //Criando as pilhas.
-        Stack<String> pilhaA = new Stack();
+        Stack<String> pilhaA = new Stack<String>();
 
-        Stack<Integer> pilhaX = new Stack();
+        Stack<Integer> pilhaX = new Stack<String>();
 
         //Inicializa as pilhas.
         pilhaA = tokens;
         pilhaX.add(52);
 
         do {
-
             //faça x ser o topo da pilha
             Integer topox = pilhaX.peek();
             //faça "a" ser o proximo simbolo de entrada
