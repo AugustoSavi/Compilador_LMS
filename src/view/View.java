@@ -32,7 +32,6 @@ public class View extends JFrame {
         setContentPane(contentPane);
         contentPane.setLayout(null);
 
-
 //        Console
         Console console = new Console();
         contentPane.add(console.labelConsole);
@@ -45,7 +44,7 @@ public class View extends JFrame {
         codigo.scrollPaneAreaCodigo.setViewportView(codigo.textAreaCodigo);
 
 //        Buttons
-        Buttons buttons = new Buttons();
+        Buttons buttons = new Buttons(codigo.textAreaCodigo);
         contentPane.add(buttons.buttonSalvar);
         contentPane.add(buttons.buttonAbrirArquivo);
         contentPane.add(buttons.buttonNovoArquivo);
