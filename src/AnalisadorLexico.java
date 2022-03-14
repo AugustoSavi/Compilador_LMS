@@ -1,5 +1,5 @@
 
-import java.util.Stack<String>;
+import java.util.Stack;
 
 public class AnalisadorLexico {
 

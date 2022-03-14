@@ -8,7 +8,7 @@ class AnalisadorSintatico {
         //Criando as pilhas.
         Stack<String> pilhaA = new Stack<String>();
 
-        Stack<Integer> pilhaX = new Stack<String>();
+        Stack<Integer> pilhaX = new Stack<Integer>();
 
         //Inicializa as pilhas.
         pilhaA = tokens;
