@@ -43,17 +43,19 @@ public class View extends JFrame {
         contentPane.add(codigo.scrollPaneAreaCodigo);
         codigo.scrollPaneAreaCodigo.setViewportView(codigo.textAreaCodigo);
 
-//        Buttons
-        Buttons buttons = new Buttons(codigo.textAreaCodigo);
-        contentPane.add(buttons.buttonSalvar);
-        contentPane.add(buttons.buttonAbrirArquivo);
-        contentPane.add(buttons.buttonNovoArquivo);
-        contentPane.add(buttons.buttonCompilar);
-
 //        Tabela Tokens
         PilhaTokens pilhaTokens = new PilhaTokens();
         contentPane.add(pilhaTokens.scrollPanePilhaTokens);
         contentPane.add(pilhaTokens.labelPilhaTokens);
+
+//        Buttons
+        Buttons buttons = new Buttons(codigo.textAreaCodigo, pilhaTokens);
+        contentPane.add(buttons.buttonSalvar);
+        contentPane.add(buttons.buttonAbrirArquivo);
+        contentPane.add(buttons.buttonNovoArquivo);
+        contentPane.add(buttons.buttonCompilar);
+        contentPane.add(buttons.buttonAddRow);
+        contentPane.add(buttons.buttonRemoveRow);
 
     }
 }

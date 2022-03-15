@@ -1,5 +1,6 @@
 package view;
 
+import model.Token;
 import utils.ManipuladorArquivos;
 
 import javax.swing.*;
@@ -13,9 +14,11 @@ public class Buttons {
     public JButton buttonSalvar;
     public JButton buttonCompilar;
     public JButton buttonAbrirArquivo;
+    public JButton buttonAddRow;
+    public JButton buttonRemoveRow;
     public String PATH = "";
 
-    public Buttons (JTextArea textAreaCodigo){
+    public Buttons (JTextArea textAreaCodigo, PilhaTokens pilhaTokens){
 
         buttonAbrirArquivo = new JButton();
         buttonAbrirArquivo.setIcon(UIManager.getIcon("FileView.directoryIcon"));
@@ -109,5 +112,26 @@ public class Buttons {
             }
         });
 
+
+        buttonAddRow = new JButton();
+        buttonAddRow.setText("Adiciona Linha");
+        buttonAddRow.setBounds(310, 5, 170, 23);
+        buttonAddRow.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent actionEvent) {
+                pilhaTokens.addRow(new Token((int)Math.floor(Math.random()*(1000-1+1)+1),"teste"));
+            }
+        });
+
+        buttonRemoveRow = new JButton();
+        buttonRemoveRow.setText("Remover Linha");
+        buttonRemoveRow.setBounds(485, 5, 170, 23);
+        buttonRemoveRow.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent actionEvent) {
+                if (pilhaTokens.modelToken.getRowCount() == 0){
+                    return;
+                }
+                pilhaTokens.removeRow(0);
+            }
+        });
     }
 }

@@ -1,8 +1,11 @@
 package view;
 
+import model.Token;
+
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
+import java.util.Stack;
 
 public class PilhaTokens {
     public JLabel labelPilhaTokens;
@@ -30,5 +33,24 @@ public class PilhaTokens {
 
         labelPilhaTokens = new JLabel("Pilha de Tokens");
         labelPilhaTokens.setBounds(861, 344, 188, 11);
+    }
+
+    public void updateLexicTable(Stack tokens) {
+        Stack tempStack = (Stack) tokens.clone();
+
+        modelToken.setRowCount(0);
+
+        while(!tempStack.isEmpty()) {
+            Token token = (Token) tempStack.pop() ;
+            modelToken.addRow(new Object[] { token.getCodigo(), token.getValor(), token.getNumLinha() });
+        }
+    }
+
+    public void addRow(Token token){
+        modelToken.addRow(new Object[] { token.getCodigo(), token.getValor(), token.getNumLinha() });
+    }
+
+    public void removeRow(Integer row){
+        modelToken.removeRow(row);
     }
 }
