@@ -80,7 +80,27 @@ public class Buttons {
         buttonSalvar.setBounds(160, 5, 70, 23);
         buttonSalvar.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent actionEvent) {
-                new Compilador(textAreaCodigo, PATH_FILE, pilhaTokens);
+                String codigoFonte = textAreaCodigo.getText();
+                JFileChooser fileChooser = new JFileChooser();
+                fileChooser.setCurrentDirectory(new File("."));
+
+                if(codigoFonte.isEmpty()) {
+                    JOptionPane.showMessageDialog(null,"Código Fonte vazio");
+
+                }else {
+                    try {
+                        if (!PATH_FILE.isEmpty()){
+                            new ManipuladorArquivos().writeFile(codigoFonte,PATH_FILE);
+                        }
+                        else if(fileChooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION){
+                            new ManipuladorArquivos().writeFile(codigoFonte,fileChooser.getSelectedFile().getPath());
+                            PATH_FILE = fileChooser.getSelectedFile().getPath();
+                        }
+                    } catch (IOException ioException) {
+                        // TODO Auto-generated catch block
+                        ioException.printStackTrace();
+                    }
+                }
             }
         });
 
@@ -90,20 +110,7 @@ public class Buttons {
         buttonCompilar.setBounds(235, 5, 70, 23);
         buttonCompilar.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent actionEvent) {
-                if (textAreaCodigo.getText().isEmpty()) {
-                    JOptionPane.showMessageDialog(null, "Código Fonte vazio");
-
-                } else if (PATH_FILE.isEmpty()) {
-                    JOptionPane.showMessageDialog(null, "Salve o arquivo antes de compilar");
-                } else {
-                    Queue<Linha> linhas = new ManipuladorArquivos().readerLineByLine(PATH_FILE);
-
-                    if (!linhas.isEmpty()) {
-                        for (Linha linha : linhas) {
-                            pilhaTokens.addRow(linha);
-                        }
-                    }
-                }
+                new Compilador(textAreaCodigo, PATH_FILE, pilhaTokens);
             }
         });
 

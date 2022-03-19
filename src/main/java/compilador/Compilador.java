@@ -20,6 +20,8 @@ public class Compilador {
         else {
             Queue<Linha> linhas = new ManipuladorArquivos().readerLineByLine(PATH_FILE);
 
+            new AnalisadorLexico().analisadorLexico(linhas);
+
             if(!linhas.isEmpty()) {
                 for (Linha linha : linhas) {
                     pilhaTokens.addRow(linha);
