@@ -1,7 +1,7 @@
 
 import java.util.Stack;
 
-public class Compilador {
+public class Main {
 
     public void init() {
         //- Programa a ser analisado
@@ -31,7 +31,7 @@ public class Compilador {
 
     //executa o programa
     public static void main(String args[]) {
-        new Compilador().init();//inicia o programa
+        new Main().init();//inicia o programa
     }
 
 }

@@ -1,5 +1,6 @@
 package view;
 
+import compilador.Compilador;
 import model.Linha;
 import utils.ManipuladorArquivos;
 
@@ -17,9 +18,9 @@ public class Buttons {
     public JButton buttonAbrirArquivo;
     public JButton buttonAddRow;
     public JButton buttonRemoveRow;
-    public String PATH = "";
+    public String PATH_FILE = "";
 
-    public Buttons (JTextArea textAreaCodigo, PilhaTokens pilhaTokens){
+    public Buttons(JTextArea textAreaCodigo, PilhaTokens pilhaTokens) {
 
         buttonAbrirArquivo = new JButton();
         buttonAbrirArquivo.setIcon(UIManager.getIcon("FileView.directoryIcon"));
@@ -36,7 +37,7 @@ public class Buttons {
                         StringBuilder stringBuilder = new ManipuladorArquivos().readFile(jFileChooser.getSelectedFile().getPath());
                         String texto = stringBuilder.toString();
                         textAreaCodigo.setText(texto);
-                        PATH = jFileChooser.getSelectedFile().getPath();
+                        PATH_FILE = jFileChooser.getSelectedFile().getPath();
                     }
 
                 } catch (IOException ioException) {
@@ -56,14 +57,14 @@ public class Buttons {
                 JFileChooser fileChooser = new JFileChooser();
                 fileChooser.setCurrentDirectory(new File("."));
 
-                if(codigoFonte.isEmpty()) {
-                    JOptionPane.showMessageDialog(null,"código fonte vazio");
+                if (codigoFonte.isEmpty()) {
+                    JOptionPane.showMessageDialog(null, "código fonte vazio");
 
-                }else {
+                } else {
                     try {
-                         if(fileChooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION){
-                            new ManipuladorArquivos().writeFile(codigoFonte,fileChooser.getSelectedFile().getPath());
-                            PATH = fileChooser.getSelectedFile().getPath();
+                        if (fileChooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) {
+                            new ManipuladorArquivos().writeFile(codigoFonte, fileChooser.getSelectedFile().getPath());
+                            PATH_FILE = fileChooser.getSelectedFile().getPath();
                         }
                     } catch (IOException ioException) {
                         // TODO Auto-generated catch block
@@ -79,27 +80,7 @@ public class Buttons {
         buttonSalvar.setBounds(160, 5, 70, 23);
         buttonSalvar.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent actionEvent) {
-                String codigoFonte = textAreaCodigo.getText();
-                JFileChooser fileChooser = new JFileChooser();
-                fileChooser.setCurrentDirectory(new File("."));
-
-                if(codigoFonte.isEmpty()) {
-                    JOptionPane.showMessageDialog(null,"Código Fonte vazio");
-
-                }else {
-                    try {
-                        if (!PATH.isEmpty()){
-                            new ManipuladorArquivos().writeFile(codigoFonte,PATH);
-                        }
-                        else if(fileChooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION){
-                            new ManipuladorArquivos().writeFile(codigoFonte,fileChooser.getSelectedFile().getPath());
-                            PATH = fileChooser.getSelectedFile().getPath();
-                        }
-                    } catch (IOException ioException) {
-                        // TODO Auto-generated catch block
-                        ioException.printStackTrace();
-                    }
-                }
+                new Compilador(textAreaCodigo, PATH_FILE, pilhaTokens);
             }
         });
 
@@ -109,17 +90,15 @@ public class Buttons {
         buttonCompilar.setBounds(235, 5, 70, 23);
         buttonCompilar.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent actionEvent) {
-                if(textAreaCodigo.getText().isEmpty()) {
-                    JOptionPane.showMessageDialog(null,"Código Fonte vazio");
+                if (textAreaCodigo.getText().isEmpty()) {
+                    JOptionPane.showMessageDialog(null, "Código Fonte vazio");
 
-                }
-                else if (PATH.isEmpty()){
-                    JOptionPane.showMessageDialog(null,"Salve o arquivo antes de compilar");
-                }
-                else {
-                    Queue<Linha> linhas = new ManipuladorArquivos().readerLineByLine(PATH);
+                } else if (PATH_FILE.isEmpty()) {
+                    JOptionPane.showMessageDialog(null, "Salve o arquivo antes de compilar");
+                } else {
+                    Queue<Linha> linhas = new ManipuladorArquivos().readerLineByLine(PATH_FILE);
 
-                    if(!linhas.isEmpty()) {
+                    if (!linhas.isEmpty()) {
                         for (Linha linha : linhas) {
                             pilhaTokens.addRow(linha);
                         }
@@ -134,7 +113,7 @@ public class Buttons {
         buttonAddRow.setBounds(310, 5, 170, 23);
         buttonAddRow.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent actionEvent) {
-                pilhaTokens.addRow(new Linha("teste",(int)Math.floor(Math.random()*(1000-1+1)+1)));
+                pilhaTokens.addRow(new Linha("teste", (int) Math.floor(Math.random() * (1000 - 1 + 1) + 1)));
             }
         });
 
@@ -143,7 +122,7 @@ public class Buttons {
         buttonRemoveRow.setBounds(485, 5, 170, 23);
         buttonRemoveRow.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent actionEvent) {
-                if (pilhaTokens.modelToken.getRowCount() == 0){
+                if (pilhaTokens.modelToken.getRowCount() == 0) {
                     return;
                 }
                 pilhaTokens.removeRow(0);
