@@ -18,6 +18,9 @@ public class Token {
         if (codigo.equals(25)) {
             return "Identificador";
         }
+        else if (codigo.equals(48)){
+            return "Literal";
+        }
         return palavra;
     }
 }

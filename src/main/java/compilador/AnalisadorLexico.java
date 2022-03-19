@@ -10,8 +10,16 @@ public class AnalisadorLexico {
         Linha line = linhas.remove();
 
         while (line != null) {
-            line = linhas.remove();
-            System.out.println();
+            for (String palavra: line.getLinha().split(" ")){
+                if (!palavra.trim().isEmpty()) {
+                    System.out.println(line.getNumeroLinha() + ":->" + palavra.trim());
+                }
+            }
+            if(!linhas.isEmpty()) {
+                line = linhas.remove();
+            } else {
+                break;
+            }
         }
     }
 }
