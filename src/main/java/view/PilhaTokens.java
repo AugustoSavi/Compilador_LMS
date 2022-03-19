@@ -1,6 +1,7 @@
 package view;
 
 import model.Linha;
+import model.Token;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
@@ -46,8 +47,8 @@ public class PilhaTokens {
         }
     }
 
-    public void addRow(Linha linha) {
-        modelToken.addRow(new Object[]{linha.getNumeroLinha(), linha.getLinha(), linha.getNumeroLinha()});
+    public void addRow(Token token) {
+        modelToken.addRow(new Object[]{token.getCodigo(), token.getPalavra(), token.getNumeroLinha()});
     }
 
     public void removeRow(Integer row) {

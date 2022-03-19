@@ -2,6 +2,7 @@ package view;
 
 import compilador.Compilador;
 import model.Linha;
+import model.Token;
 import utils.ManipuladorArquivos;
 
 import javax.swing.*;
@@ -120,7 +121,7 @@ public class Buttons {
         buttonAddRow.setBounds(310, 5, 170, 23);
         buttonAddRow.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent actionEvent) {
-                pilhaTokens.addRow(new Linha("teste", (int) Math.floor(Math.random() * (1000 - 1 + 1) + 1)));
+                pilhaTokens.addRow(new Token(1,1,"1"));
             }
         });
 

@@ -10,15 +10,14 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Token {
-    private Integer codigo;
+    private int codigo;
     private int numeroLinha;
     private String palavra;
 
     public String getPalavra() {
-        if (codigo.equals(25)) {
+        if (codigo == 25) {
             return "Identificador";
-        }
-        else if (codigo.equals(48)){
+        } else if (codigo == 48) {
             return "Literal";
         }
         return palavra;
