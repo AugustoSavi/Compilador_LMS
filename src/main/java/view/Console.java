@@ -1,4 +1,5 @@
 package view;
+
 import javax.swing.*;
 
 public class Console {
@@ -7,7 +8,7 @@ public class Console {
     public JTextArea textAreaConsole;
 
 
-    public Console(){
+    public Console() {
         labelConsole = new JLabel("Console:");
         labelConsole.setBounds(10, 370, 146, 29);
 

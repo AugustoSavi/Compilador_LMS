@@ -1,6 +1,6 @@
 package view;
 
-import model.Token;
+import model.Linha;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
@@ -13,12 +13,12 @@ public class PilhaTokens {
     public DefaultTableModel modelToken;
     public JScrollPane scrollPanePilhaTokens;
 
-    public PilhaTokens(){
+    public PilhaTokens() {
         scrollPanePilhaTokens = new JScrollPane();
         scrollPanePilhaTokens.setBounds(750, 30, 293, 500);
         scrollPanePilhaTokens.setBackground(Color.BLACK);
 
-        String colunas[] = { "Código", "Palavra" , "Linha" };
+        String colunas[] = {"Código", "Palavra", "Linha"};
 
         modelToken = new DefaultTableModel(null, colunas) {
             public boolean isCellEditable(int row, int column) {
@@ -40,17 +40,17 @@ public class PilhaTokens {
 
         modelToken.setRowCount(0);
 
-        while(!tempStack.isEmpty()) {
-            Token token = (Token) tempStack.pop() ;
-            modelToken.addRow(new Object[] { token.getCodigo(), token.getValor(), token.getNumLinha() });
+        while (!tempStack.isEmpty()) {
+            Linha linha = (Linha) tempStack.pop();
+            modelToken.addRow(new Object[]{1, linha.getLinha(), linha.getNumeroLinha()});
         }
     }
 
-    public void addRow(Token token){
-        modelToken.addRow(new Object[] { token.getCodigo(), token.getValor(), token.getNumLinha() });
+    public void addRow(Linha linha) {
+        modelToken.addRow(new Object[]{linha.getNumeroLinha(), linha.getLinha(), linha.getNumeroLinha()});
     }
 
-    public void removeRow(Integer row){
+    public void removeRow(Integer row) {
         modelToken.removeRow(row);
     }
 }

@@ -12,6 +12,7 @@ public class Codigo {
         scrollPaneAreaCodigo.setBounds(10, 30, 736, 341);
 
         textAreaCodigo = new JTextArea();
+        textAreaCodigo.setTabSize(2);
         textAreaCodigo.setEditable(true);
         NumeredBorder numeredBorder = new NumeredBorder();
         scrollPaneAreaCodigo.setViewportView(numeredBorder.getBorder(textAreaCodigo));

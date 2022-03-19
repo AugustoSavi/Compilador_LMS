@@ -1,16 +1,15 @@
 package utils;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.PrintStream;
+import model.Linha;
+
+import java.io.*;
+import java.util.LinkedList;
+import java.util.Queue;
 
 public class ManipuladorArquivos {
 
 
-    public void GravaArquivo(String texto, String path) throws FileNotFoundException, IOException {
+    public void writeFile(String texto, String path) throws FileNotFoundException, IOException {
 
         FileOutputStream arq = null;
         PrintStream ps = null;
@@ -33,7 +32,7 @@ public class ManipuladorArquivos {
         }
     }
 
-    public StringBuilder lerArquivo(String path) throws FileNotFoundException, IOException {
+    public StringBuilder readFile(String path) throws FileNotFoundException, IOException {
         StringBuilder result = new StringBuilder();
         FileInputStream arq = null;
         try {
@@ -51,5 +50,25 @@ public class ManipuladorArquivos {
             }
         }
         return result;
+    }
+
+    public Queue<Linha> readerLineByLine(String path) {
+        Queue<Linha> linhas = new LinkedList<Linha>();
+
+        try (BufferedReader bufferedReader = new BufferedReader(new FileReader(path))) {
+            String line = bufferedReader.readLine();
+            int numberLine = 0;
+
+            while (line != null) {
+                linhas.add(new Linha(line,numberLine));
+                line = bufferedReader.readLine();
+                numberLine++;
+            }
+
+        } catch (IOException e) {
+            System.out.println("Erro: " + e.getMessage());
+        }
+
+        return linhas;
     }
 }

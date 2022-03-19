@@ -12,7 +12,7 @@ import javax.swing.JViewport;
 import javax.swing.border.AbstractBorder;
 import javax.swing.border.Border;
 
-public class NumeredBorder extends AbstractBorder implements Border{
+public class NumeredBorder extends AbstractBorder implements Border {
     private int lineHeight = 16;
     private int characterHeight = 8;
     private int characterWidth = 7;
@@ -58,7 +58,7 @@ public class NumeredBorder extends AbstractBorder implements Border{
 
         int lenght;
         int px;
-        for( ; i < rows; i++) {
+        for (; i < rows; i++) {
             str = String.valueOf(i + 1);
             lenght = str.length();
             lenght = maxLenght - lenght;

@@ -1,6 +1,6 @@
 package view;
 
-import model.Token;
+import model.Linha;
 import utils.ManipuladorArquivos;
 
 import javax.swing.*;
@@ -8,6 +8,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.IOException;
+import java.util.Queue;
 
 public class Buttons {
     public JButton buttonNovoArquivo;
@@ -32,7 +33,7 @@ public class Buttons {
 
                 try {
                     if (jFileChooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) {
-                        StringBuilder stringBuilder = new ManipuladorArquivos().lerArquivo(jFileChooser.getSelectedFile().getPath());
+                        StringBuilder stringBuilder = new ManipuladorArquivos().readFile(jFileChooser.getSelectedFile().getPath());
                         String texto = stringBuilder.toString();
                         textAreaCodigo.setText(texto);
                         PATH = jFileChooser.getSelectedFile().getPath();
@@ -61,7 +62,7 @@ public class Buttons {
                 }else {
                     try {
                          if(fileChooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION){
-                            new ManipuladorArquivos().GravaArquivo(codigoFonte,fileChooser.getSelectedFile().getPath());
+                            new ManipuladorArquivos().writeFile(codigoFonte,fileChooser.getSelectedFile().getPath());
                             PATH = fileChooser.getSelectedFile().getPath();
                         }
                     } catch (IOException ioException) {
@@ -88,10 +89,10 @@ public class Buttons {
                 }else {
                     try {
                         if (!PATH.isEmpty()){
-                            new ManipuladorArquivos().GravaArquivo(codigoFonte,PATH);
+                            new ManipuladorArquivos().writeFile(codigoFonte,PATH);
                         }
                         else if(fileChooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION){
-                            new ManipuladorArquivos().GravaArquivo(codigoFonte,fileChooser.getSelectedFile().getPath());
+                            new ManipuladorArquivos().writeFile(codigoFonte,fileChooser.getSelectedFile().getPath());
                             PATH = fileChooser.getSelectedFile().getPath();
                         }
                     } catch (IOException ioException) {
@@ -108,7 +109,22 @@ public class Buttons {
         buttonCompilar.setBounds(235, 5, 70, 23);
         buttonCompilar.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent actionEvent) {
+                if(textAreaCodigo.getText().isEmpty()) {
+                    JOptionPane.showMessageDialog(null,"Código Fonte vazio");
 
+                }
+                else if (PATH.isEmpty()){
+                    JOptionPane.showMessageDialog(null,"Salve o arquivo antes de compilar");
+                }
+                else {
+                    Queue<Linha> linhas = new ManipuladorArquivos().readerLineByLine(PATH);
+
+                    if(!linhas.isEmpty()) {
+                        for (Linha linha : linhas) {
+                            pilhaTokens.addRow(linha);
+                        }
+                    }
+                }
             }
         });
 
@@ -118,7 +134,7 @@ public class Buttons {
         buttonAddRow.setBounds(310, 5, 170, 23);
         buttonAddRow.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent actionEvent) {
-                pilhaTokens.addRow(new Token((int)Math.floor(Math.random()*(1000-1+1)+1),"teste"));
+                pilhaTokens.addRow(new Linha("teste",(int)Math.floor(Math.random()*(1000-1+1)+1)));
             }
         });
 
