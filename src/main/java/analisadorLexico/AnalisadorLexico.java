@@ -21,7 +21,7 @@ public class AnalisadorLexico {
         Linha line = linhas.remove();
 
         while (line != null) {
-            for (String palavraSplit: line.getLinha().trim().split(" ")){
+            for (String palavraSplit: utils.getSplitedLine(line)){
                 String palavraUpperCase = palavraSplit.toUpperCase();
                 if (!palavraUpperCase.isEmpty()) {
                     lexicoByWord(palavraSplit, line);
@@ -30,7 +30,7 @@ public class AnalisadorLexico {
             if(!linhas.isEmpty()) {
                 line = linhas.remove();
             } else {
-                utils.addNotificacaoConsole(line.getNumeroLinha(),"Fim");
+                utils.addNotificacaoConsole(line.getNumeroLinha(),"Fim da compilação");
                 break;
             }
         }

@@ -1,6 +1,7 @@
 package utils;
 
 import analisadorLexico.SimbolosTerminais;
+import model.Linha;
 import model.NotificacaoConsole;
 import model.Token;
 import java.util.Queue;
@@ -13,6 +14,10 @@ public class Utils {
     public Utils( Queue<Token> tokens, Queue<NotificacaoConsole> notificacaoConsoles){
         this.tokens = tokens;
         this.notificacaoConsoles = notificacaoConsoles;
+    }
+
+    public String[] getSplitedLine(Linha line){
+        return line.getLinha().trim().split(" ");
     }
 
     public int getSimboloPrimario(char caracter) {
