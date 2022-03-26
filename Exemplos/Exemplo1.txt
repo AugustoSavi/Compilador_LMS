@@ -23,8 +23,4 @@ Begin
  	Else
  		Z:=z+x+y;
 	Writeln(z);
-End. 
-
-
-
-
+End.

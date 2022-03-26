@@ -9,9 +9,9 @@ import java.util.LinkedList;
 import java.util.Queue;
 
 public class AnalisadorLexico {
-    boolean isComentario = false, isLiteral = false, isPalavra = false, isNumero = false, isUltimoCaracter = false;
     int codigo = 0;
     int linhaComentario = 0, linhaLiteral = 0, tamanhoComentario = 0;
+    boolean isComentario = false, isLiteral = false, isPalavra = false, isNumero = false, isUltimoCaracter = false;
 
     Queue<Token> tokens = new LinkedList<>();
     Queue<NotificacaoConsole> notificacaoConsoles = new LinkedList<>();
@@ -23,7 +23,6 @@ public class AnalisadorLexico {
         while (line != null) {
             for (String palavraSplit: line.getLinha().trim().split(" ")){
                 String palavraUpperCase = palavraSplit.toUpperCase();
-
                 if (!palavraUpperCase.isEmpty()) {
                     lexicoByWord(palavraSplit, line);
                 }
@@ -31,9 +30,15 @@ public class AnalisadorLexico {
             if(!linhas.isEmpty()) {
                 line = linhas.remove();
             } else {
-                utils.addNotificacaoConsole(line.getNumeroLinha(),"Fim...");
+                utils.addNotificacaoConsole(line.getNumeroLinha(),"Fim");
                 break;
             }
+        }
+        if(isComentario) {
+            utils.addNotificacaoConsole(linhaComentario,"Não fechamento de comentário");
+        }
+        if(isLiteral) {
+            utils.addNotificacaoConsole(linhaLiteral,"Não fechamento de literal");
         }
 
         return new LexicoReturn(tokens,notificacaoConsoles);
@@ -129,7 +134,6 @@ public class AnalisadorLexico {
                         palavra = "";
                     }
                 }
-
 
 //                não é numero
                 if(!isNumero) {

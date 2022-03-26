@@ -6,8 +6,8 @@ import java.util.Map;
 public class SimbolosTerminais {
 
     Map<Character, Integer> simbolosPrimarios = new HashMap<>();
-    Map<String, Integer> simbolosSecundarios = new HashMap<String, Integer>();
-    Map<String, Integer> palavrasReservadas = new HashMap<String, Integer>();
+    Map<String, Integer> simbolosCombinados = new HashMap<>();
+    Map<String, Integer> palavrasReservadas = new HashMap<>();
 
     public SimbolosTerminais() {
         this.iniciaHashMapTerminais();
@@ -34,11 +34,11 @@ public class SimbolosTerminais {
         simbolosPrimarios.put('.', 49);
 
         // simbolos secundarios
-        simbolosSecundarios.put(">=", 42);
-        simbolosSecundarios.put("<=", 44);
-        simbolosSecundarios.put("<>", 45);
-        simbolosSecundarios.put(":=", 38);
-        simbolosSecundarios.put("..", 50);
+        simbolosCombinados.put(">=", 42);
+        simbolosCombinados.put("<=", 44);
+        simbolosCombinados.put("<>", 45);
+        simbolosCombinados.put(":=", 38);
+        simbolosCombinados.put("..", 50);
 
         // palavras reservadas
         palavrasReservadas.put("PROGRAM", 1);
@@ -79,8 +79,8 @@ public class SimbolosTerminais {
 
     public int getSimbolosSecundarios(char caracter, char proxCaracter) {
         String composto = "" + caracter + proxCaracter;
-        if(simbolosSecundarios.containsKey(composto)) {
-            return simbolosSecundarios.get(composto);
+        if(simbolosCombinados.containsKey(composto)) {
+            return simbolosCombinados.get(composto);
         }
         return 0;
     }
