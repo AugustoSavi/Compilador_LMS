@@ -49,13 +49,11 @@ public class View extends JFrame {
         contentPane.add(pilhaTokens.labelPilhaTokens);
 
 //        Buttons
-        Buttons buttons = new Buttons(codigo.textAreaCodigo, pilhaTokens);
+        Buttons buttons = new Buttons(codigo.textAreaCodigo, pilhaTokens, console);
         contentPane.add(buttons.buttonSalvar);
         contentPane.add(buttons.buttonAbrirArquivo);
         contentPane.add(buttons.buttonNovoArquivo);
         contentPane.add(buttons.buttonCompilar);
-        contentPane.add(buttons.buttonAddRow);
-        contentPane.add(buttons.buttonRemoveRow);
 
     }
 }

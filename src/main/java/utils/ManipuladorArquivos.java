@@ -57,7 +57,7 @@ public class ManipuladorArquivos {
 
         try (BufferedReader bufferedReader = new BufferedReader(new FileReader(path))) {
             String line = bufferedReader.readLine();
-            int numberLine = 0;
+            int numberLine = 1;
 
             while (line != null) {
                 linhas.add(new Linha(line,numberLine));

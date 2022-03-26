@@ -10,18 +10,15 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.IOException;
-import java.util.Queue;
 
 public class Buttons {
     public JButton buttonNovoArquivo;
     public JButton buttonSalvar;
     public JButton buttonCompilar;
     public JButton buttonAbrirArquivo;
-    public JButton buttonAddRow;
-    public JButton buttonRemoveRow;
     public String PATH_FILE = "";
 
-    public Buttons(JTextArea textAreaCodigo, PilhaTokens pilhaTokens) {
+    public Buttons(JTextArea textAreaCodigo, PilhaTokens pilhaTokens, Console console) {
 
         buttonAbrirArquivo = new JButton();
         buttonAbrirArquivo.setIcon(UIManager.getIcon("FileView.directoryIcon"));
@@ -111,29 +108,7 @@ public class Buttons {
         buttonCompilar.setBounds(235, 5, 70, 23);
         buttonCompilar.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent actionEvent) {
-                new Compilador(textAreaCodigo, PATH_FILE, pilhaTokens);
-            }
-        });
-
-
-        buttonAddRow = new JButton();
-        buttonAddRow.setText("Adiciona Linha");
-        buttonAddRow.setBounds(310, 5, 170, 23);
-        buttonAddRow.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent actionEvent) {
-                pilhaTokens.addRow(new Token(1,1,"1"));
-            }
-        });
-
-        buttonRemoveRow = new JButton();
-        buttonRemoveRow.setText("Remover Linha");
-        buttonRemoveRow.setBounds(485, 5, 170, 23);
-        buttonRemoveRow.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent actionEvent) {
-                if (pilhaTokens.modelToken.getRowCount() == 0) {
-                    return;
-                }
-                pilhaTokens.removeRow(0);
+                new Compilador(textAreaCodigo, PATH_FILE, pilhaTokens, console);
             }
         });
     }

@@ -14,7 +14,7 @@ Begin
 		Call p;
  End;
 End;
-
+(*TESTE DE COMENTARIO*)
 Begin
 	Z:=0;
  	Readln(x,y);
