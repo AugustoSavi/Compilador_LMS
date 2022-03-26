@@ -5,7 +5,6 @@ import model.Linha;
 import model.NotificacaoConsole;
 import model.Token;
 import utils.Utils;
-
 import java.util.LinkedList;
 import java.util.Queue;
 
@@ -41,8 +40,8 @@ public class AnalisadorLexico {
     }
 
     private void lexicoByWord(String palavraSplit, Linha line){
-        char caracteres[] = palavraSplit.toCharArray();
-        String palavra = new String();
+        char[] caracteres = palavraSplit.toCharArray();
+        String palavra = "";
 
         for(int i = 0; i < caracteres.length; i++) {
             char charAtual = caracteres[i];
@@ -75,7 +74,7 @@ public class AnalisadorLexico {
                 palavra += charAtual;
             } else if(charAtual != '\'' && isLiteral) { //adiciona no bloco de literais
                 palavra += charAtual;
-            } else if(charAtual == '\'' && isLiteral) { //fecha bloco de literais
+            } else if(charAtual == '\'') { //fecha bloco de literais
                 palavra += charAtual;
                 isLiteral = false;
                 tokens.add(new Token(48,  line.getNumeroLinha(), palavra));
@@ -84,7 +83,6 @@ public class AnalisadorLexico {
 
             if(!isLiteral) {
                 //iniciacao de palavras
-
                 //iniciado com simbolo '-' ou iniciado com n�mero - isNumero = true;
                 if(charAtual == '-' && utils.isNumero(charProx)) { //inicia bloco de numeros quando valor for simbolo '-'
                     isNumero = true;
@@ -116,7 +114,7 @@ public class AnalisadorLexico {
                             utils.addNotificacaoConsole(line.getNumeroLinha(),"Valor não acaieto na linha ");
 
                         }
-                    } catch(Exception e) {}
+                    } catch(Exception ignored) {}
 
                 }
 
@@ -149,7 +147,7 @@ public class AnalisadorLexico {
                                     utils.addNotificacaoConsole(line.getNumeroLinha(),"String fora do limite de caracteres na linha ");
                                 }
                             }
-                        } catch(Exception e) {}
+                        } catch(Exception ignored) {}
 
                         if((codigo = utils.getPalavraReservada(palavra)) != 0) {
                             utils.addToken(codigo,line.getNumeroLinha() ,palavra);

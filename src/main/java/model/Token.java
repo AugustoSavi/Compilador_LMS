@@ -14,12 +14,12 @@ public class Token {
     private int numeroLinha;
     private String palavra;
 
-    public String getPalavra() {
-        if (codigo == 25) {
-            return "Identificador";
-        } else if (codigo == 48) {
-            return "Literal";
-        }
-        return palavra;
-    }
+//    public String getPalavra() {
+//        if (codigo == 25) {
+//            return "Identificador";
+//        } else if (codigo == 48) {
+//            return "Literal";
+//        }
+//        return palavra;
+//    }
 }

@@ -17,7 +17,6 @@ public class Compilador {
     public Compilador(JTextArea textAreaCodigo, String PATH_FILE, PilhaTokens pilhaTokens, Console console){
         if(textAreaCodigo.getText().isEmpty()) {
             JOptionPane.showMessageDialog(null,"Código Fonte vazio");
-
         }
         else if (PATH_FILE.isEmpty()){
             JOptionPane.showMessageDialog(null,"Salve o arquivo antes de compilar");

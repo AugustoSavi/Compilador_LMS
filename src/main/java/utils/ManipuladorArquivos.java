@@ -8,8 +8,7 @@ import java.util.Queue;
 
 public class ManipuladorArquivos {
 
-
-    public void writeFile(String texto, String path) throws FileNotFoundException, IOException {
+    public void writeFile(String texto, String path) throws IOException {
 
         FileOutputStream arq = null;
         PrintStream ps = null;
@@ -32,7 +31,7 @@ public class ManipuladorArquivos {
         }
     }
 
-    public StringBuilder readFile(String path) throws FileNotFoundException, IOException {
+    public StringBuilder readFile(String path) throws IOException {
         StringBuilder result = new StringBuilder();
         FileInputStream arq = null;
         try {
@@ -53,7 +52,7 @@ public class ManipuladorArquivos {
     }
 
     public Queue<Linha> readerLineByLine(String path) {
-        Queue<Linha> linhas = new LinkedList<Linha>();
+        Queue<Linha> linhas = new LinkedList<>();
 
         try (BufferedReader bufferedReader = new BufferedReader(new FileReader(path))) {
             String line = bufferedReader.readLine();

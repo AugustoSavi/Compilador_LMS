@@ -24,3 +24,7 @@ Begin
  		Z:=z+x+y;
 	Writeln(z);
 End. 
+
+
+
+

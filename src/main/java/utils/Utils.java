@@ -3,17 +3,18 @@ package utils;
 import analisadorLexico.SimbolosTerminais;
 import model.NotificacaoConsole;
 import model.Token;
-
 import java.util.Queue;
 
 public class Utils {
-    Queue<Token> tokens;
-    Queue<NotificacaoConsole> notificacaoConsoles;
+    private final Queue<Token> tokens;
+    private final Queue<NotificacaoConsole> notificacaoConsoles;
+    private final SimbolosTerminais terminais = new SimbolosTerminais();
+
     public Utils( Queue<Token> tokens, Queue<NotificacaoConsole> notificacaoConsoles){
         this.tokens = tokens;
         this.notificacaoConsoles = notificacaoConsoles;
     }
-    private SimbolosTerminais terminais = new SimbolosTerminais();
+
     public int getSimboloPrimario(char caracter) {
         return terminais.getSimboloPrimario(caracter);
     }
@@ -27,17 +28,11 @@ public class Utils {
     }
 
     public boolean isLetra(char caracter) {
-        if (caracter >= 'a' && caracter <= 'z' || caracter >= 'A' && caracter <= 'Z' || caracter == '_') {
-            return true;
-        }
-        return false;
+        return caracter >= 'a' && caracter <= 'z' || caracter >= 'A' && caracter <= 'Z' || caracter == '_';
     }
 
     public boolean isNumero(char caracter) {
-        if(caracter >= '0' && caracter <= '9') {
-            return true;
-        }
-        return false;
+        return caracter >= '0' && caracter <= '9';
     }
 
     public void addToken(int codigo, int numeroLinha, String palavra){

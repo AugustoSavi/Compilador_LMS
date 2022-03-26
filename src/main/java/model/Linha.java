@@ -10,8 +10,6 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Linha {
-
     private String linha;
     private int numeroLinha;
-
 }

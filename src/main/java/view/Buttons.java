@@ -1,10 +1,7 @@
 package view;
 
 import compilador.Compilador;
-import model.Linha;
-import model.Token;
 import utils.ManipuladorArquivos;
-
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -24,24 +21,22 @@ public class Buttons {
         buttonAbrirArquivo.setIcon(UIManager.getIcon("FileView.directoryIcon"));
         buttonAbrirArquivo.setToolTipText("Abrir Arquivo");
         buttonAbrirArquivo.setBounds(10, 5, 70, 23);
-        buttonAbrirArquivo.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent actionEvent) {
-                JFileChooser jFileChooser = new JFileChooser();
-                jFileChooser.setFileSelectionMode(JFileChooser.FILES_AND_DIRECTORIES);
-                jFileChooser.setCurrentDirectory(new File("."));
+        buttonAbrirArquivo.addActionListener(actionEvent -> {
+            JFileChooser jFileChooser = new JFileChooser();
+            jFileChooser.setFileSelectionMode(JFileChooser.FILES_AND_DIRECTORIES);
+            jFileChooser.setCurrentDirectory(new File("."));
 
-                try {
-                    if (jFileChooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) {
-                        StringBuilder stringBuilder = new ManipuladorArquivos().readFile(jFileChooser.getSelectedFile().getPath());
-                        String texto = stringBuilder.toString();
-                        textAreaCodigo.setText(texto);
-                        PATH_FILE = jFileChooser.getSelectedFile().getPath();
-                    }
-
-                } catch (IOException ioException) {
-                    // TODO Auto-generated catch block
-                    ioException.printStackTrace();
+            try {
+                if (jFileChooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) {
+                    StringBuilder stringBuilder = new ManipuladorArquivos().readFile(jFileChooser.getSelectedFile().getPath());
+                    String texto = stringBuilder.toString();
+                    textAreaCodigo.setText(texto);
+                    PATH_FILE = jFileChooser.getSelectedFile().getPath();
                 }
+
+            } catch (IOException ioException) {
+                // TODO Auto-generated catch block
+                ioException.printStackTrace();
             }
         });
 
@@ -49,25 +44,23 @@ public class Buttons {
         buttonNovoArquivo.setIcon(UIManager.getIcon("FileView.fileIcon"));
         buttonNovoArquivo.setToolTipText("Novo Arquivo");
         buttonNovoArquivo.setBounds(85, 5, 70, 23);
-        buttonNovoArquivo.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent actionEvent) {
-                String codigoFonte = textAreaCodigo.getText();
-                JFileChooser fileChooser = new JFileChooser();
-                fileChooser.setCurrentDirectory(new File("."));
+        buttonNovoArquivo.addActionListener(actionEvent -> {
+            String codigoFonte = textAreaCodigo.getText();
+            JFileChooser fileChooser = new JFileChooser();
+            fileChooser.setCurrentDirectory(new File("."));
 
-                if (codigoFonte.isEmpty()) {
-                    JOptionPane.showMessageDialog(null, "código fonte vazio");
+            if (codigoFonte.isEmpty()) {
+                JOptionPane.showMessageDialog(null, "código fonte vazio");
 
-                } else {
-                    try {
-                        if (fileChooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) {
-                            new ManipuladorArquivos().writeFile(codigoFonte, fileChooser.getSelectedFile().getPath());
-                            PATH_FILE = fileChooser.getSelectedFile().getPath();
-                        }
-                    } catch (IOException ioException) {
-                        // TODO Auto-generated catch block
-                        ioException.printStackTrace();
+            } else {
+                try {
+                    if (fileChooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) {
+                        new ManipuladorArquivos().writeFile(codigoFonte, fileChooser.getSelectedFile().getPath());
+                        PATH_FILE = fileChooser.getSelectedFile().getPath();
                     }
+                } catch (IOException ioException) {
+                    // TODO Auto-generated catch block
+                    ioException.printStackTrace();
                 }
             }
         });
@@ -76,28 +69,26 @@ public class Buttons {
         buttonSalvar.setIcon(UIManager.getIcon("FileView.floppyDriveIcon"));
         buttonSalvar.setToolTipText("Salvar");
         buttonSalvar.setBounds(160, 5, 70, 23);
-        buttonSalvar.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent actionEvent) {
-                String codigoFonte = textAreaCodigo.getText();
-                JFileChooser fileChooser = new JFileChooser();
-                fileChooser.setCurrentDirectory(new File("."));
+        buttonSalvar.addActionListener(actionEvent -> {
+            String codigoFonte = textAreaCodigo.getText();
+            JFileChooser fileChooser = new JFileChooser();
+            fileChooser.setCurrentDirectory(new File("."));
 
-                if(codigoFonte.isEmpty()) {
-                    JOptionPane.showMessageDialog(null,"Código Fonte vazio");
+            if(codigoFonte.isEmpty()) {
+                JOptionPane.showMessageDialog(null,"Código Fonte vazio");
 
-                }else {
-                    try {
-                        if (!PATH_FILE.isEmpty()){
-                            new ManipuladorArquivos().writeFile(codigoFonte,PATH_FILE);
-                        }
-                        else if(fileChooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION){
-                            new ManipuladorArquivos().writeFile(codigoFonte,fileChooser.getSelectedFile().getPath());
-                            PATH_FILE = fileChooser.getSelectedFile().getPath();
-                        }
-                    } catch (IOException ioException) {
-                        // TODO Auto-generated catch block
-                        ioException.printStackTrace();
+            }else {
+                try {
+                    if (!PATH_FILE.isEmpty()){
+                        new ManipuladorArquivos().writeFile(codigoFonte,PATH_FILE);
                     }
+                    else if(fileChooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION){
+                        new ManipuladorArquivos().writeFile(codigoFonte,fileChooser.getSelectedFile().getPath());
+                        PATH_FILE = fileChooser.getSelectedFile().getPath();
+                    }
+                } catch (IOException ioException) {
+                    // TODO Auto-generated catch block
+                    ioException.printStackTrace();
                 }
             }
         });
@@ -106,10 +97,6 @@ public class Buttons {
         buttonCompilar.setIcon(UIManager.getIcon("FileView.computerIcon"));
         buttonCompilar.setToolTipText("Compilar");
         buttonCompilar.setBounds(235, 5, 70, 23);
-        buttonCompilar.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent actionEvent) {
-                new Compilador(textAreaCodigo, PATH_FILE, pilhaTokens, console);
-            }
-        });
+        buttonCompilar.addActionListener(actionEvent -> new Compilador(textAreaCodigo, PATH_FILE, pilhaTokens, console));
     }
 }
