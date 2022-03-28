@@ -77,10 +77,10 @@ public class SimbolosTerminais {
         return 0;
     }
 
-    public int getSimbolosSecundarios(char caracter, char proxCaracter) {
-        String composto = "" + caracter + proxCaracter;
-        if(simbolosCombinados.containsKey(composto)) {
-            return simbolosCombinados.get(composto);
+    public int getSimboloCombinado(char caracter, char proxCaracter) {
+        String combinado = "" + caracter + proxCaracter;
+        if(simbolosCombinados.containsKey(combinado)) {
+            return simbolosCombinados.get(combinado);
         }
         return 0;
     }

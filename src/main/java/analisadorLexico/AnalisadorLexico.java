@@ -81,6 +81,9 @@ public class AnalisadorLexico {
                 palavra += charAtual;
             } else if(charAtual == '\'') { //fecha bloco de literais
                 palavra += charAtual;
+                if (palavra.length() > 255 ){
+                    utils.addNotificacaoConsole(line.getNumeroLinha(),"Literal com mais de 255 caracteres");
+                }
                 isLiteral = false;
                 tokens.add(new Token(48,  line.getNumeroLinha(), palavra));
                 palavra = "";
@@ -89,20 +92,20 @@ public class AnalisadorLexico {
             if(!isLiteral) {
                 //iniciacao de palavras
                 //iniciado com simbolo '-' ou iniciado com n�mero - isNumero = true;
-                if(charAtual == '-' && utils.isNumero(charProx)) { //inicia bloco de numeros quando valor for simbolo '-'
+                if(charAtual == '-' && utils.isNumber(charProx)) { //inicia bloco de numeros quando valor for simbolo '-'
                     isNumero = true;
                     palavra += charAtual + "" + charProx;
                     System.out.println(palavra);
                     i++;
                     continue;
                 }
-                if(utils.isNumero(charAtual)) { //inicia bloco de numeros
+                if(utils.isNumber(charAtual)) { //inicia bloco de numeros
                     isNumero = true;
                     palavra += charAtual;
                 }
                 if(isNumero) {
                     try {
-                        while(utils.isNumero(caracteres[i + 1])) {
+                        while(utils.isNumber(caracteres[i + 1])) {
                             if(charAtual == '.') { //verifica ponto flutuante
                                 utils.addNotificacaoConsole(line.getNumeroLinha(),"Numeros de ponto flutuante na linha ");
                             }
@@ -116,7 +119,7 @@ public class AnalisadorLexico {
                             isNumero = false;
 
                         } else if(Double.parseDouble(palavra) <= -32768 || Double.parseDouble(palavra) >= 32768) { //cria erro de ponto flutuante
-                            utils.addNotificacaoConsole(line.getNumeroLinha(),"Valor não acaieto na linha ");
+                            utils.addNotificacaoConsole(line.getNumeroLinha(),"Valor não aceito na linha ");
 
                         }
                     } catch(Exception ignored) {}
@@ -125,7 +128,7 @@ public class AnalisadorLexico {
 
                 if(!isNumero) {
 //                     verificacao de simbolos terminais
-                    if((codigo = utils.getSimbolosSecundarios(charAtual, charProx)) != 0) { //verifica se é simbolo composto
+                    if((codigo = utils.getSimboloCombinado(charAtual, charProx)) != 0) { //verifica se é simbolo composto
                         utils.addToken(codigo, line.getNumeroLinha(),"" + charAtual + charProx);
                         palavra = "";
                         i++;
@@ -138,13 +141,13 @@ public class AnalisadorLexico {
 //                não é numero
                 if(!isNumero) {
                     // montagem de palavra
-                    if(!isPalavra && utils.isLetra(charAtual)) {
+                    if(!isPalavra && utils.isLetter(charAtual)) {
                         isPalavra = true;
                         palavra += charAtual;
                     }
                     if(isPalavra) {
                         try {
-                            while(utils.isLetra(caracteres[i + 1]) || utils.isNumero(caracteres[i + 1])) {
+                            while(utils.isLetter(caracteres[i + 1]) || utils.isNumber(caracteres[i + 1])) {
                                 palavra += caracteres[i + 1];
                                 i++;
                                 if(palavra.length() > 30) {

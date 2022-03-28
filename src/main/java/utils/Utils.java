@@ -24,20 +24,20 @@ public class Utils {
         return terminais.getSimboloPrimario(caracter);
     }
 
-    public int getSimbolosSecundarios(char caracter, char proxCaracter) {
-        return terminais.getSimbolosSecundarios(caracter, proxCaracter);
+    public int getSimboloCombinado(char caracter, char proxCaracter) {
+        return terminais.getSimboloCombinado(caracter, proxCaracter);
     }
 
     public int getPalavraReservada(String palavra) {
         return terminais.getPalavraReservada(palavra);
     }
 
-    public boolean isLetra(char caracter) {
-        return caracter >= 'a' && caracter <= 'z' || caracter >= 'A' && caracter <= 'Z' || caracter == '_';
+    public boolean isLetter(Character caracter) {
+        return Character.isLetter(caracter) || caracter == '_';
     }
 
-    public boolean isNumero(char caracter) {
-        return caracter >= '0' && caracter <= '9';
+    public boolean isNumber(Character caracter) {
+        return Character.isDigit(caracter);
     }
 
     public void addToken(int codigo, int numeroLinha, String palavra){
