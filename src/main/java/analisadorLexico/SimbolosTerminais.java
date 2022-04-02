@@ -33,7 +33,7 @@ public class SimbolosTerminais {
         simbolosPrimarios.put('<', 43);
         simbolosPrimarios.put('.', 49);
 
-        // simbolos secundarios
+        // simbolos combinados
         simbolosCombinados.put(">=", 42);
         simbolosCombinados.put("<=", 44);
         simbolosCombinados.put("<>", 45);

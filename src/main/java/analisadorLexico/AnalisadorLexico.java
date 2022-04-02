@@ -90,35 +90,33 @@ public class AnalisadorLexico {
             }
 
             if(!isLiteral) {
-                //iniciacao de palavras
-                //iniciado com simbolo '-' ou iniciado com n�mero - isNumero = true;
-                if(charAtual == '-' && utils.isNumber(charProx)) { //inicia bloco de numeros quando valor for simbolo '-'
+                if(charAtual == '-' && utils.isNumber(charProx)) {
                     isNumero = true;
                     palavra += charAtual + "" + charProx;
                     System.out.println(palavra);
                     i++;
                     continue;
                 }
-                if(utils.isNumber(charAtual)) { //inicia bloco de numeros
+                if(utils.isNumber(charAtual)) {
                     isNumero = true;
                     palavra += charAtual;
                 }
                 if(isNumero) {
                     try {
                         while(utils.isNumber(caracteres[i + 1])) {
-                            if(charAtual == '.') { //verifica ponto flutuante
+                            if(charAtual == '.') {
                                 utils.addNotificacaoConsole(line.getNumeroLinha(),"Numeros de ponto flutuante na linha ");
                             }
                             palavra += caracteres[i + 1];
                             i++;
                         }
 
-                        if(Double.parseDouble(palavra) > -32768 && Double.parseDouble(palavra) < 32768) { //verifica escala de inteiros da linguagem
+                        if(Double.parseDouble(palavra) > -32768 && Double.parseDouble(palavra) < 32768) {
                             utils.addToken(26,line.getNumeroLinha(),palavra);
                             palavra = "";
                             isNumero = false;
 
-                        } else if(Double.parseDouble(palavra) <= -32768 || Double.parseDouble(palavra) >= 32768) { //cria erro de ponto flutuante
+                        } else if(Double.parseDouble(palavra) <= -32768 || Double.parseDouble(palavra) >= 32768) {
                             utils.addNotificacaoConsole(line.getNumeroLinha(),"Valor não aceito na linha ");
 
                         }
@@ -138,7 +136,6 @@ public class AnalisadorLexico {
                     }
                 }
 
-//                não é numero
                 if(!isNumero) {
                     // montagem de palavra
                     if(!isPalavra && utils.isLetter(charAtual)) {
