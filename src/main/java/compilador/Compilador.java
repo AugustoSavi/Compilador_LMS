@@ -1,10 +1,8 @@
 package compilador;
 
 import analisadorLexico.AnalisadorLexico;
-import model.LexicoReturn;
-import model.Linha;
-import model.NotificacaoConsole;
-import model.Token;
+import analisadorSintatico.AnalisadorSintatico;
+import model.*;
 import utils.ManipuladorArquivos;
 import view.Console;
 import view.PilhaTokens;
@@ -25,7 +23,9 @@ public class Compilador {
             pilhaTokens.modelToken.setRowCount(0);
             Queue<Linha> linhas = new ManipuladorArquivos().readerLineByLine(PATH_FILE);
             LexicoReturn lexicoReturn =  new AnalisadorLexico().analisadorLexico(linhas);
+            SintaticoReturn sintaticoReturn = new AnalisadorSintatico().analiseSintatica(lexicoReturn.tokens);
 
+            System.out.println(sintaticoReturn);
             if(!lexicoReturn.tokens.isEmpty()) {
                 for (Token token : lexicoReturn.tokens) {
                     pilhaTokens.addRow(token);

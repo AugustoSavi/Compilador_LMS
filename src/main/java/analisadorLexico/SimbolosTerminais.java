@@ -40,6 +40,12 @@ public class SimbolosTerminais {
         simbolosCombinados.put(":=", 38);
         simbolosCombinados.put("..", 50);
 
+
+        // Adicionado no analisador Sintatico
+        palavrasReservadas.put("IDENTIFICADOR", 25);
+        palavrasReservadas.put("INTEIRO", 26);
+        palavrasReservadas.put("LITERAL", 48);
+
         // palavras reservadas
         palavrasReservadas.put("PROGRAM", 1);
         palavrasReservadas.put("LABEL", 2);
@@ -89,6 +95,23 @@ public class SimbolosTerminais {
         if(palavrasReservadas.containsKey(palavra.toUpperCase())) {
             return palavrasReservadas.get(palavra.toUpperCase());
         }
+        return 0;
+    }
+
+    public int getSimboloTerminal(String palavra) {
+
+        if(simbolosPrimarios.containsKey(palavra.toUpperCase())) {
+            return palavrasReservadas.get(palavra.toUpperCase());
+        }
+
+        if(simbolosCombinados.containsKey(palavra.toUpperCase())) {
+            return palavrasReservadas.get(palavra.toUpperCase());
+        }
+
+        if(palavrasReservadas.containsKey(palavra.toUpperCase())) {
+            return palavrasReservadas.get(palavra.toUpperCase());
+        }
+
         return 0;
     }
 }
