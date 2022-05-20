@@ -93,7 +93,7 @@ public class AnalisadorLexico {
                 if(charAtual == '-' && utils.isNumber(charProx)) {
                     isNumero = true;
                     palavra += charAtual + "" + charProx;
-                    System.out.println(palavra);
+//                    System.out.println(palavra);
                     i++;
                     continue;
                 }
