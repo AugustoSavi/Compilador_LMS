@@ -38,6 +38,12 @@ public class Compilador {
                     console.textAreaConsole.append(notificacaoConsole.getMensagem()+"\n");
                 }
             }
+
+            if (!sintaticoReturn.notificacaoConsoles.isEmpty()){
+                for (NotificacaoConsole notificacaoConsole: sintaticoReturn.notificacaoConsoles){
+                    console.textAreaConsole.append(notificacaoConsole.getMensagem()+"\n");
+                }
+            }
         }
     }
 }
