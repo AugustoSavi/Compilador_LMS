@@ -25,7 +25,6 @@ public class Compilador {
             LexicoReturn lexicoReturn =  new AnalisadorLexico().analisadorLexico(linhas);
             SintaticoReturn sintaticoReturn = new AnalisadorSintatico().analiseSintatica(lexicoReturn.tokens);
 
-            System.out.println(sintaticoReturn);
             if(!lexicoReturn.tokens.isEmpty()) {
                 for (Token token : lexicoReturn.tokens) {
                     pilhaTokens.addRow(token);

@@ -5,21 +5,15 @@ import model.SintaticoReturn;
 import model.Token;
 import java.util.LinkedList;
 import java.util.Queue;
-import java.util.Stack;
 
 public class AnalisadorSintatico {
-    //------------	tabelas
     private final Parsing tabelaDerivacoes = new Parsing();
     private final SimbolosNaoTerminais naoTerminais = new SimbolosNaoTerminais();
     private final SimbolosTerminais terminais = new SimbolosTerminais();
 
-    //----------	pilhas
-    private final Stack<Token> derivadas = new Stack<>();
-
+    private final Queue<Token> derivadas = new LinkedList<>();
     Queue<NotificacaoConsole> notificacaoConsoles = new LinkedList<>();
     private final Queue<Token> pilhaSintatica = new LinkedList<>();
-
-    /*------------------------------------Metodos--------------------------------------*/
 
     /* funcao responsavel pela analise sintatica */
     public SintaticoReturn analiseSintatica(Queue<Token> tokenStack) {
@@ -29,7 +23,7 @@ public class AnalisadorSintatico {
         //processa enquanto a pilha sintatica n estiver vazia
         while(!pilhaSintatica.isEmpty()) {
 
-            Token valorEntrada;
+            Token valorEntrada = new Token();
             Token valorSintatico = new Token();
 
             //atribui valores a serem analisados
@@ -38,14 +32,13 @@ public class AnalisadorSintatico {
                 valorSintatico = pilhaSintatica.peek();
 
             } catch (Exception e) {
-
-                notificacaoConsoles.add((new NotificacaoConsole(valorSintatico.getNumeroLinha(),"ERRO----> Esperado(a) ' " + valorSintatico.getPalavra())));
+                notificacaoConsoles.add((new NotificacaoConsole(valorSintatico.getNumeroLinha(),"[!]ERROR: Valor entrada: "+ valorEntrada.getPalavra()  +"Esperado(a): " + valorSintatico.getPalavra())));
                 break;
             }
 
-            System.out.println(valorEntrada.getPalavra() + "-----" + valorSintatico.getPalavra());
+            System.out.println("Valores em analise: " + valorEntrada.getPalavra() + "===" + valorSintatico.getPalavra());
 
-            //se valor inicial atribui primeiira derivação sintatica
+            //se valor inicial atribui primeira derivação sintatica
             if((valorSintatico.getCodigo() == 52) && (valorEntrada.getCodigo() == 1)) {
 
                 // retira token inicial e coleta sua derivacao
@@ -72,14 +65,14 @@ public class AnalisadorSintatico {
                         tokenStack.remove();
                         pilhaSintatica.remove();
 
-                    } else /* se nao erro */{
-                        notificacaoConsoles.add((new NotificacaoConsole(valorSintatico.getNumeroLinha(),"ERRO----> Esperado(a) ' " + valorSintatico.getPalavra())));
+                    } else /* se não erro */{
+                        notificacaoConsoles.add((new NotificacaoConsole(valorSintatico.getNumeroLinha(),"[!]ERROR: Valor entrada: "+ valorEntrada.getPalavra()  +" Esperado(a): " + valorSintatico.getPalavra())));
                         System.out.println(notificacaoConsoles.peek().getMensagem());
                         break;
                     }
 
 
-                } else /* se x(topo da pilha sintaica) � nao-terminal */{
+                } else /* se x(topo da pilha sintaica) é nao-terminal */{
 
                     // se existir derivacao com os codigos do topo das pilhas sintatica e lexica
                     if(tabelaDerivacoes.containsKey(valorSintatico.getCodigo(), valorEntrada.getCodigo())) {
@@ -99,7 +92,7 @@ public class AnalisadorSintatico {
                         derivadas.clear();
 
                     } else /* caso nao exista derivacao erro */{
-                        notificacaoConsoles.add((new NotificacaoConsole(valorEntrada.getNumeroLinha(),"ERRO-------> Não e permitido ' " + valorEntrada.getPalavra())));
+                        notificacaoConsoles.add((new NotificacaoConsole(valorEntrada.getNumeroLinha(),"ERRO-------> Não e permitido: " + valorEntrada.getPalavra())));
                         System.out.println(notificacaoConsoles.peek().getMensagem());
                         break;
                     }
@@ -114,9 +107,9 @@ public class AnalisadorSintatico {
     /*------------------------ funcoes auxiliares --------------------------------*/
 
     /*  add pilha temporaria na pilha-sintatica  */
-    private void addPilhaSintatica(Stack<Token> stack) {
+    private void addPilhaSintatica(Queue<Token> stack) {
         while(!stack.isEmpty()) {
-            pilhaSintatica.add(stack.pop());
+            pilhaSintatica.add(stack.remove());
         }
     }
 
