@@ -11,7 +11,7 @@ import utils.ManipuladorArquivos;
 import java.io.File;
 import java.util.Queue;
 
-public class SintaticoLexicoTest {
+public class AnalisadorSintaticoTest {
 
     @Test
     public void AnalisadorLexicoTest(){
