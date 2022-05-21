@@ -3,13 +3,13 @@ package analisadorSintatico;
 import java.util.HashMap;
 import java.util.Map;
 
-public class Parsing {
+public class ParsingTable {
 
     private final Map<String, String> parsingTable = new HashMap<>();
 
 
-    public Parsing() {
-        this.initGrammarTable();
+    public ParsingTable() {
+        this.initParsingTable();
     }
 
     public Boolean containsKey(Integer key_1, Integer key_2) {
@@ -29,7 +29,7 @@ public class Parsing {
         return key_1.toString() + "," + key_2.toString();
     }
 
-    public void initGrammarTable() {
+    public void initParsingTable() {
         parsingTable.put("52,1", "PROGRAM|IDENTIFICADOR|;|BLOCO|.");
         parsingTable.put("53,2", "DCLROT|DCLCONST|DCLVAR|DCLPROC|CORPO");
         parsingTable.put("53,3", "DCLROT|DCLCONST|DCLVAR|DCLPROC|CORPO");

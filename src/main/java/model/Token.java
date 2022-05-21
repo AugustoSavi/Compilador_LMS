@@ -14,8 +14,4 @@ public class Token {
     private int numeroLinha;
     private String palavra;
 
-    public Token(int codigo, String palavra) {
-        this.codigo = codigo;
-        this.palavra = palavra;
-    }
 }

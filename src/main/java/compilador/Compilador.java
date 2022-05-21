@@ -20,6 +20,7 @@ public class Compilador {
             JOptionPane.showMessageDialog(null, "Salve o arquivo antes de compilar");
         } else {
             pilhaTokens.modelToken.setRowCount(0);
+
             Queue<Linha> linhas = new ManipuladorArquivos().readerLineByLine(PATH_FILE);
             LexicoReturn lexicoReturn = new AnalisadorLexico().analisadorLexico(linhas);
 

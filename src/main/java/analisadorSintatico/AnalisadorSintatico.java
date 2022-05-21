@@ -9,7 +9,7 @@ import java.util.Queue;
 import java.util.Stack;
 
 public class AnalisadorSintatico {
-    private final Parsing tabelaDerivacoes = new Parsing();
+    private final ParsingTable parsingTable = new ParsingTable();
     private final SimbolosNaoTerminais naoTerminais = new SimbolosNaoTerminais();
     private final SimbolosTerminais terminais = new SimbolosTerminais();
     private final Stack<Token> derivadas = new Stack<>();
@@ -44,7 +44,7 @@ public class AnalisadorSintatico {
 
                 // retira token inicial e coleta sua derivacao
                 this.pilhaSintatica.pop();
-                String[] derivacoes = tabelaDerivacoes.getCombinado(valorSintatico.getCodigo(), valorEntrada.getCodigo());
+                String[] derivacoes = parsingTable.getCombinado(valorSintatico.getCodigo(), valorEntrada.getCodigo());
 
                 // atribui as derivacoes a uma pilha temporaria e depois a pilha principal
                 for (String derivacao : derivacoes) {
@@ -76,11 +76,11 @@ public class AnalisadorSintatico {
                 } else /* se x(topo da pilha sintaica) é nao-terminal */ {
 
                     // se existir derivacao com os codigos do topo das pilhas sintatica e lexica
-                    if (tabelaDerivacoes.containsKey(valorSintatico.getCodigo(), valorEntrada.getCodigo())) {
+                    if (parsingTable.containsKey(valorSintatico.getCodigo(), valorEntrada.getCodigo())) {
 
                         // retira token inicial e coleta sua derivacao
                         this.pilhaSintatica.pop();
-                        String[] derivacoes = tabelaDerivacoes.getCombinado(valorSintatico.getCodigo(), valorEntrada.getCodigo());
+                        String[] derivacoes = parsingTable.getCombinado(valorSintatico.getCodigo(), valorEntrada.getCodigo());
 
                         // atribui as derivacoes a uma pilha temporaria e depois a pilha principal
                         for (String derivacao : derivacoes) {
