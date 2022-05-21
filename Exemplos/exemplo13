@@ -1,0 +1,7 @@
+Program teste;
+var
+a:integer;
+begin
+c:=2;
+end.
+

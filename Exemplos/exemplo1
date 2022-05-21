@@ -1,9 +1,5 @@
-(*-----
-
-
-
------------------------ Exemplo 1 ----------------------------*)
-(*TESTE - Exemplo Vï¿½lido*)
+(*---------------------------- Exemplo 1 ----------------------------*)
+(*TESTE - Exemplo VÃ¯Â¿Â½lido*)
 PROGRAM TESTE123;
 	LABEL
 		label_a, label_b;
@@ -16,7 +12,7 @@ PROGRAM TESTE123;
 		array_a : ARRAY[0..20] OF INTEGER;
 		array_b, array_c, array_d : ARRAY[0..1000] OF INTEGER;
 
-	(*Declaraï¿½ï¿½o de procedure, inicia novo bloco*)
+	(*DeclaraÃ¯Â¿Â½Ã¯Â¿Â½o de procedure, inicia novo bloco*)
 	PROCEDURE p_teste(idd : INTEGER);
 		LABEL
 			label_a, label_b;
@@ -35,7 +31,7 @@ PROGRAM TESTE123;
 	END;
 
 (*
-	- Inï¿½cio do bloco principal
+	- InÃ¯Â¿Â½cio do bloco principal
 *)
 
 BEGIN
@@ -81,4 +77,5 @@ BEGIN
 		30 : BEGIN END
 	END;
 END.
+
 

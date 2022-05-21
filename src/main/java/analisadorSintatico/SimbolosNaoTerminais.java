@@ -5,21 +5,21 @@ import java.util.Map;
 
 public class SimbolosNaoTerminais {
 
-    private final Map<String, Integer> simbolosNaoTerminais = new HashMap<String, Integer>();
+    private final Map<String, Integer> simbolosNaoTerminais = new HashMap<>();
 
     public SimbolosNaoTerminais() {
         this.iniciaHashMapNaoTerminais();
     }
 
     public Integer getNaoTerminal(String palavra) {
-        if(simbolosNaoTerminais.containsKey(palavra)) {
+        if (simbolosNaoTerminais.containsKey(palavra.toUpperCase())) {
             return simbolosNaoTerminais.get(palavra);
         }
         return null;
     }
 
     public Boolean containsKey(String key) {
-        return simbolosNaoTerminais.containsKey(key);
+        return simbolosNaoTerminais.containsKey(key.toUpperCase());
     }
 
     private void iniciaHashMapNaoTerminais() {

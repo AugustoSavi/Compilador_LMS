@@ -1,5 +1,5 @@
 Program testeproc1;
-Var
+VAR
  X, y, z :integer;
 Procedure P; 
 Var A :integer;
@@ -21,4 +21,3 @@ Begin
  Z:=z+x+y;
  Writeln(z);
 End
-
