@@ -12,6 +12,7 @@ public class Buttons {
     public JButton buttonSalvar;
     public JButton buttonCompilar;
     public JButton buttonAbrirArquivo;
+    public JLabel labelPath;
     public String PATH_FILE = "";
 
     public Buttons(JTextArea textAreaCodigo, PilhaTokens pilhaTokens, Console console) {
@@ -30,7 +31,7 @@ public class Buttons {
                     StringBuilder stringBuilder = new ManipuladorArquivos().readFile(jFileChooser.getSelectedFile().getPath());
                     String texto = stringBuilder.toString();
                     textAreaCodigo.setText(texto);
-                    PATH_FILE = jFileChooser.getSelectedFile().getPath();
+                    setPathFile(jFileChooser.getSelectedFile());
                 }
 
             } catch (IOException ioException) {
@@ -55,7 +56,7 @@ public class Buttons {
                 try {
                     if (fileChooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) {
                         new ManipuladorArquivos().writeFile(codigoFonte, fileChooser.getSelectedFile().getPath());
-                        PATH_FILE = fileChooser.getSelectedFile().getPath();
+                        setPathFile(fileChooser.getSelectedFile());
                     }
                 } catch (IOException ioException) {
                     // TODO Auto-generated catch block
@@ -82,7 +83,7 @@ public class Buttons {
                         new ManipuladorArquivos().writeFile(codigoFonte, PATH_FILE);
                     } else if (fileChooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) {
                         new ManipuladorArquivos().writeFile(codigoFonte, fileChooser.getSelectedFile().getPath());
-                        PATH_FILE = fileChooser.getSelectedFile().getPath();
+                        setPathFile(fileChooser.getSelectedFile());
                     }
                 } catch (IOException ioException) {
                     // TODO Auto-generated catch block
@@ -96,5 +97,13 @@ public class Buttons {
         buttonCompilar.setToolTipText("Compilar");
         buttonCompilar.setBounds(235, 5, 70, 23);
         buttonCompilar.addActionListener(actionEvent -> new Compilador(textAreaCodigo, PATH_FILE, pilhaTokens, console));
+
+        labelPath = new JLabel("");
+        labelPath.setBounds(315, 1, 500, 29);
+    }
+
+    private void setPathFile(File file){
+        this.PATH_FILE = file.getPath();
+        this.labelPath.setText(file.getName());
     }
 }

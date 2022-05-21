@@ -37,5 +37,6 @@ public class View extends JFrame {
         contentPane.add(buttons.buttonAbrirArquivo);
         contentPane.add(buttons.buttonNovoArquivo);
         contentPane.add(buttons.buttonCompilar);
+        contentPane.add(buttons.labelPath);
     }
 }
