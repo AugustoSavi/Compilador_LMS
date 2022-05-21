@@ -48,7 +48,7 @@ public class AnalisadorSintatico {
                 // atribui as derivacoes a uma pilha temporaria e depois a pilha principal
                 for(String derivacao : derivacoes) {
                     if(!derivacao.equals("NULL")) {
-                        derivadas.add(formataDerivacao(valorSintatico.getNumeroLinha(),derivacao));
+                        derivadas.add(formataDerivacao(valorEntrada.getNumeroLinha(),derivacao));
                     }
                 }
 
@@ -66,7 +66,7 @@ public class AnalisadorSintatico {
                         pilhaSintatica.remove();
 
                     } else /* se não erro */{
-                        notificacaoConsoles.add((new NotificacaoConsole(valorSintatico.getNumeroLinha(),"[!]ERROR: Valor entrada: "+ valorEntrada.getPalavra()  +" Esperado(a): " + valorSintatico.getPalavra())));
+                        notificacaoConsoles.add((new NotificacaoConsole(valorEntrada.getNumeroLinha(),"[!]ERROR: Valor entrada: "+ valorEntrada.getPalavra()  +" Esperado(a): " + valorSintatico.getPalavra())));
                         System.out.println(notificacaoConsoles.peek().getMensagem());
                         break;
                     }
@@ -84,7 +84,7 @@ public class AnalisadorSintatico {
                         // atribui as derivacoes a uma pilha temporaria e depois a pilha principal
                         for(String derivacao : derivacoes) {
                             if(!derivacao.equals("NULL")) {
-                                derivadas.add(formataDerivacao(valorSintatico.getNumeroLinha(),derivacao));
+                                derivadas.add(formataDerivacao(valorEntrada.getNumeroLinha(),derivacao));
                             }
                         }
 
@@ -104,8 +104,6 @@ public class AnalisadorSintatico {
         return new SintaticoReturn(notificacaoConsoles);
     }
 
-    /*------------------------ funcoes auxiliares --------------------------------*/
-
     /*  add pilha temporaria na pilha-sintatica  */
     private void addPilhaSintatica(Queue<Token> stack) {
         while(!stack.isEmpty()) {
@@ -114,16 +112,16 @@ public class AnalisadorSintatico {
     }
 
     /*  forma token da derivacao  */
-    private Token formataDerivacao(int numeroLinha,String deriv) {
+    private Token formataDerivacao(int numeroLinha,String derivacao) {
         int codigo;
 
-        if(naoTerminais.containsKey(deriv)) {
-            codigo = naoTerminais.getNaoTerminal(deriv);
-            return new Token(codigo, numeroLinha, deriv);
+        if(naoTerminais.containsKey(derivacao)) {
+            codigo = naoTerminais.getNaoTerminal(derivacao);
+            return new Token(codigo, numeroLinha, derivacao);
 
         } else {
-            codigo = terminais.getSimboloTerminal(deriv);
-            return new Token(codigo, numeroLinha,deriv);
+            codigo = terminais.getTerminal(derivacao);
+            return new Token(codigo, numeroLinha,derivacao);
         }
     }
 }

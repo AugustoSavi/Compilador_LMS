@@ -8,6 +8,7 @@ import view.Console;
 import view.PilhaTokens;
 
 import javax.swing.*;
+import java.util.LinkedList;
 import java.util.Queue;
 
 public class Compilador {
@@ -23,7 +24,9 @@ public class Compilador {
             pilhaTokens.modelToken.setRowCount(0);
             Queue<Linha> linhas = new ManipuladorArquivos().readerLineByLine(PATH_FILE);
             LexicoReturn lexicoReturn =  new AnalisadorLexico().analisadorLexico(linhas);
-            SintaticoReturn sintaticoReturn = new AnalisadorSintatico().analiseSintatica(lexicoReturn.tokens);
+
+            Queue<Token> tokensAnaliseSintatica = new LinkedList<>(lexicoReturn.tokens);
+            SintaticoReturn sintaticoReturn = new AnalisadorSintatico().analiseSintatica(tokensAnaliseSintatica);
 
             if(!lexicoReturn.tokens.isEmpty()) {
                 for (Token token : lexicoReturn.tokens) {
