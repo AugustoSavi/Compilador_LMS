@@ -14,6 +14,6 @@ public class NotificacaoConsole {
     private String mensagem;
 
     public String getMensagem() {
-        return  "[!]Linha: "+ numeroLinha + " : " + mensagem;
+        return "[!]Linha: " + numeroLinha + " : " + mensagem;
     }
 }

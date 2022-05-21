@@ -59,7 +59,7 @@ public class ManipuladorArquivos {
             int numberLine = 1;
 
             while (line != null) {
-                linhas.add(new Linha(line,numberLine));
+                linhas.add(new Linha(line, numberLine));
                 line = bufferedReader.readLine();
                 numberLine++;
             }

@@ -77,7 +77,7 @@ public class SimbolosTerminais {
     }
 
     public int getSimboloPrimario(char caracter) {
-        if(simbolosPrimarios.containsKey(caracter)) {
+        if (simbolosPrimarios.containsKey(caracter)) {
             return simbolosPrimarios.get(caracter);
         }
         return 0;
@@ -85,14 +85,14 @@ public class SimbolosTerminais {
 
     public int getSimboloCombinado(char caracter, char proxCaracter) {
         String combinado = "" + caracter + proxCaracter;
-        if(simbolosCombinados.containsKey(combinado)) {
+        if (simbolosCombinados.containsKey(combinado)) {
             return simbolosCombinados.get(combinado);
         }
         return 0;
     }
 
     public int getPalavraReservada(String palavra) {
-        if(palavrasReservadas.containsKey(palavra.toUpperCase())) {
+        if (palavrasReservadas.containsKey(palavra.toUpperCase())) {
             return palavrasReservadas.get(palavra.toUpperCase());
         }
         return 0;
@@ -100,15 +100,15 @@ public class SimbolosTerminais {
 
     public int getSimboloTerminal(String palavra) {
 
-        if(simbolosPrimarios.containsKey(palavra.toUpperCase())) {
+        if (simbolosPrimarios.containsKey(palavra.toUpperCase())) {
             return palavrasReservadas.get(palavra.toUpperCase());
         }
 
-        if(simbolosCombinados.containsKey(palavra.toUpperCase())) {
+        if (simbolosCombinados.containsKey(palavra.toUpperCase())) {
             return palavrasReservadas.get(palavra.toUpperCase());
         }
 
-        if(palavrasReservadas.containsKey(palavra.toUpperCase())) {
+        if (palavrasReservadas.containsKey(palavra.toUpperCase())) {
             return palavrasReservadas.get(palavra.toUpperCase());
         }
 

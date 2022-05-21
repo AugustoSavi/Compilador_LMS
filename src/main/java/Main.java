@@ -1,5 +1,5 @@
-
 import view.View;
+
 import java.awt.*;
 
 public class Main {

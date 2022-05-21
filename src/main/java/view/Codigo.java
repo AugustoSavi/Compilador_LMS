@@ -6,7 +6,7 @@ public class Codigo {
     public JScrollPane scrollPaneAreaCodigo;
     public JTextArea textAreaCodigo;
 
-    public Codigo(){
+    public Codigo() {
         scrollPaneAreaCodigo = new JScrollPane();
         scrollPaneAreaCodigo.setEnabled(false);
         scrollPaneAreaCodigo.setBounds(10, 30, 736, 341);

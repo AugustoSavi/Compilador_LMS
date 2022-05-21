@@ -1,26 +1,24 @@
 package view;
 
-import java.awt.Color;
-import java.awt.Component;
-import java.awt.Container;
-import java.awt.Dimension;
-import java.awt.Graphics;
-import java.awt.Insets;
-import java.awt.Point;
-import javax.swing.JTextArea;
-import javax.swing.JViewport;
+import javax.swing.*;
 import javax.swing.border.AbstractBorder;
 import javax.swing.border.Border;
+import java.awt.*;
 
 public class NumeredBorder extends AbstractBorder implements Border {
-    private int lineHeight = 16;
-    private int characterHeight = 8;
-    private int characterWidth = 7;
-    private Color myColor;
+    private final int lineHeight = 16;
+    private final int characterHeight = 8;
+    private final int characterWidth = 7;
+    private final Color myColor;
     private JViewport viewport;
 
     public NumeredBorder() {
         this.myColor = new Color(255, 0, 252);
+    }
+
+    public static JTextArea getBorder(JTextArea area) {
+        area.setBorder(new NumeredBorder());
+        return area;
     }
 
     public void paintBorder(Component c, Graphics g, int x, int y, int width, int height) {
@@ -106,11 +104,6 @@ public class NumeredBorder extends AbstractBorder implements Border {
         if (parent instanceof JViewport) {
             this.viewport = (JViewport) parent;
         }
-    }
-
-    public static JTextArea getBorder(JTextArea area) {
-        area.setBorder(new NumeredBorder());
-        return area;
     }
 
 }

@@ -4,6 +4,7 @@ import analisadorLexico.SimbolosTerminais;
 import model.Linha;
 import model.NotificacaoConsole;
 import model.Token;
+
 import java.util.Queue;
 
 public class Utils {
@@ -11,12 +12,12 @@ public class Utils {
     private final Queue<NotificacaoConsole> notificacaoConsoles;
     private final SimbolosTerminais terminais = new SimbolosTerminais();
 
-    public Utils( Queue<Token> tokens, Queue<NotificacaoConsole> notificacaoConsoles){
+    public Utils(Queue<Token> tokens, Queue<NotificacaoConsole> notificacaoConsoles) {
         this.tokens = tokens;
         this.notificacaoConsoles = notificacaoConsoles;
     }
 
-    public String[] getSplitedLine(Linha line){
+    public String[] getSplitedLine(Linha line) {
         return line.getLinha().trim().split(" ");
     }
 
@@ -40,11 +41,11 @@ public class Utils {
         return Character.isDigit(caracter);
     }
 
-    public void addToken(int codigo, int numeroLinha, String palavra){
-        this.tokens.add(new Token(codigo,numeroLinha,palavra));
+    public void addToken(int codigo, int numeroLinha, String palavra) {
+        this.tokens.add(new Token(codigo, numeroLinha, palavra));
     }
 
-    public void addNotificacaoConsole(int numeroLinha, String mensagem){
-        this.notificacaoConsoles.add(new NotificacaoConsole(numeroLinha,mensagem));
+    public void addNotificacaoConsole(int numeroLinha, String mensagem) {
+        this.notificacaoConsoles.add(new NotificacaoConsole(numeroLinha, mensagem));
     }
 }

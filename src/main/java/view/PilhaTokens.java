@@ -19,7 +19,7 @@ public class PilhaTokens {
         scrollPanePilhaTokens.setBounds(750, 30, 293, 500);
         scrollPanePilhaTokens.setBackground(Color.BLACK);
 
-        String colunas[] = {"Linha", "Palavra", "Código"};
+        String[] colunas = {"Linha", "Palavra", "Código"};
 
         modelToken = new DefaultTableModel(null, colunas) {
             public boolean isCellEditable(int row, int column) {

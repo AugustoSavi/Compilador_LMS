@@ -2,9 +2,8 @@ package view;
 
 import compilador.Compilador;
 import utils.ManipuladorArquivos;
+
 import javax.swing.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.IOException;
 
@@ -74,16 +73,15 @@ public class Buttons {
             JFileChooser fileChooser = new JFileChooser();
             fileChooser.setCurrentDirectory(new File("."));
 
-            if(codigoFonte.isEmpty()) {
-                JOptionPane.showMessageDialog(null,"Código Fonte vazio");
+            if (codigoFonte.isEmpty()) {
+                JOptionPane.showMessageDialog(null, "Código Fonte vazio");
 
-            }else {
+            } else {
                 try {
-                    if (!PATH_FILE.isEmpty()){
-                        new ManipuladorArquivos().writeFile(codigoFonte,PATH_FILE);
-                    }
-                    else if(fileChooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION){
-                        new ManipuladorArquivos().writeFile(codigoFonte,fileChooser.getSelectedFile().getPath());
+                    if (!PATH_FILE.isEmpty()) {
+                        new ManipuladorArquivos().writeFile(codigoFonte, PATH_FILE);
+                    } else if (fileChooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) {
+                        new ManipuladorArquivos().writeFile(codigoFonte, fileChooser.getSelectedFile().getPath());
                         PATH_FILE = fileChooser.getSelectedFile().getPath();
                     }
                 } catch (IOException ioException) {

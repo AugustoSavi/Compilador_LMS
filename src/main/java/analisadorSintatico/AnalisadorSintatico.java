@@ -3,6 +3,7 @@ package analisadorSintatico;
 import model.NotificacaoConsole;
 import model.SintaticoReturn;
 import model.Token;
+
 import java.util.LinkedList;
 import java.util.Queue;
 import java.util.Stack;
@@ -12,8 +13,8 @@ public class AnalisadorSintatico {
     private final SimbolosNaoTerminais naoTerminais = new SimbolosNaoTerminais();
     private final SimbolosTerminais terminais = new SimbolosTerminais();
     private final Stack<Token> derivadas = new Stack<>();
-    Queue<NotificacaoConsole> notificacaoConsoles = new LinkedList<>();
     private final Stack<Token> pilhaSintatica = new Stack<>();
+    Queue<NotificacaoConsole> notificacaoConsoles = new LinkedList<>();
 
     /* funcao responsavel pela analise sintatica */
     public SintaticoReturn analiseSintatica(Queue<Token> tokenStack) {

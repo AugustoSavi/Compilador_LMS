@@ -13,7 +13,7 @@ public class SimbolosTerminais {
 
 
     public Integer getTerminal(String terminal) {
-        if(simbolosTerminais.containsKey(terminal)) {
+        if (simbolosTerminais.containsKey(terminal)) {
             return simbolosTerminais.get(terminal);
         }
         return 0;
