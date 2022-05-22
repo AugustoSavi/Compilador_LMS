@@ -67,7 +67,9 @@ public class AnalisadorSintatico {
 
                     } else /* se não erro */ {
                         notificacaoConsoles.add((new NotificacaoConsole(valorEntrada.getNumeroLinha(), "Valor entrada: " + valorEntrada.getPalavra() + " Esperado(a): " + valorSintatico.getPalavra())));
-                        System.out.println(notificacaoConsoles.peek().getMensagem());
+                        if (null != notificacaoConsoles.peek()) {
+                            System.out.println(notificacaoConsoles.peek().getMensagem());
+                        }
                         break;
                     }
 
@@ -92,7 +94,9 @@ public class AnalisadorSintatico {
 
                     } else /* caso nao exista derivacao erro */ {
                         notificacaoConsoles.add((new NotificacaoConsole(valorEntrada.getNumeroLinha(), "Não e permitido: " + valorEntrada.getPalavra())));
-                        System.out.println(notificacaoConsoles.peek().getMensagem());
+                        if (null != notificacaoConsoles.peek()) {
+                            System.out.println(notificacaoConsoles.peek().getMensagem());
+                        }
                         break;
                     }
                 }
