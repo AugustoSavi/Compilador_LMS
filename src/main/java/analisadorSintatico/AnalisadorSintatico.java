@@ -10,18 +10,17 @@ import java.util.Stack;
 
 public class AnalisadorSintatico {
     private final ParsingTable parsingTable = new ParsingTable();
-    private final SimbolosNaoTerminais naoTerminais = new SimbolosNaoTerminais();
-    private final SimbolosTerminais terminais = new SimbolosTerminais();
-    private final Stack<Token> derivadas = new Stack<>();
+    private final SimbolosNaoTerminais simbolosNaoTerminais = new SimbolosNaoTerminais();
+    private final SimbolosTerminais simbolosTerminais = new SimbolosTerminais();
+    private final Stack<Token> pilhaDerivadas = new Stack<>();
     private final Stack<Token> pilhaSintatica = new Stack<>();
     Queue<NotificacaoConsole> notificacaoConsoles = new LinkedList<>();
 
-    /* funcao responsavel pela analise sintatica */
     public SintaticoReturn analiseSintatica(Queue<Token> tokenStack) {
 
         this.pilhaSintatica.add(new Token(52, 0, "PROGRAMA"));
 
-        //processa enquanto a pilha sintatica n estiver vazia
+        //processa enquanto a pilha sintatica não estiver vazia
         while (!pilhaSintatica.isEmpty()) {
 
             Token valorEntrada = new Token();
@@ -49,12 +48,12 @@ public class AnalisadorSintatico {
                 // atribui as derivacoes a uma pilha temporaria e depois a pilha principal
                 for (String derivacao : derivacoes) {
                     if (!derivacao.equals("NULL")) {
-                        derivadas.add(formatDerivacao(valorEntrada.getNumeroLinha(), derivacao));
+                        pilhaDerivadas.add(formatDerivacao(valorEntrada.getNumeroLinha(), derivacao));
                     }
                 }
 
-                addPilhaSintatica(derivadas);
-                derivadas.clear();
+                addPilhaSintatica(pilhaDerivadas);
+                pilhaDerivadas.clear();
 
             } else /* se nao é posicao inicial */ {
 
@@ -72,7 +71,6 @@ public class AnalisadorSintatico {
                         break;
                     }
 
-
                 } else /* se x(topo da pilha sintaica) é nao-terminal */ {
 
                     // se existir derivacao com os codigos do topo das pilhas sintatica e lexica
@@ -85,12 +83,12 @@ public class AnalisadorSintatico {
                         // atribui as derivacoes a uma pilha temporaria e depois a pilha principal
                         for (String derivacao : derivacoes) {
                             if (!derivacao.equals("NULL")) {
-                                derivadas.add(formatDerivacao(valorEntrada.getNumeroLinha(), derivacao));
+                                pilhaDerivadas.add(formatDerivacao(valorEntrada.getNumeroLinha(), derivacao));
                             }
                         }
 
-                        addPilhaSintatica(derivadas);
-                        derivadas.clear();
+                        addPilhaSintatica(pilhaDerivadas);
+                        pilhaDerivadas.clear();
 
                     } else /* caso nao exista derivacao erro */ {
                         notificacaoConsoles.add((new NotificacaoConsole(valorEntrada.getNumeroLinha(), "Não e permitido: " + valorEntrada.getPalavra())));
@@ -112,16 +110,15 @@ public class AnalisadorSintatico {
         }
     }
 
-    /*  forma token da derivacao  */
     private Token formatDerivacao(int numeroLinha, String derivacao) {
         int codigo;
 
-        if (naoTerminais.containsKey(derivacao)) {
-            codigo = naoTerminais.getNaoTerminal(derivacao);
+        if (simbolosNaoTerminais.containsKey(derivacao)) {
+            codigo = simbolosNaoTerminais.getNaoTerminal(derivacao);
             return new Token(codigo, numeroLinha, derivacao);
 
         } else {
-            codigo = terminais.getTerminal(derivacao);
+            codigo = simbolosTerminais.getTerminal(derivacao);
             return new Token(codigo, numeroLinha, derivacao);
         }
     }
