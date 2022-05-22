@@ -6,7 +6,7 @@ import javax.swing.border.Border;
 import java.awt.*;
 
 public class NumeredBorder extends AbstractBorder implements Border {
-    private final int lineHeight = 16;
+    private final int lineHeight = 15;
     private final int characterHeight = 8;
     private final int characterWidth = 7;
     private final Color myColor;
