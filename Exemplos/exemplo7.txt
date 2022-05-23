@@ -1,4 +1,3 @@
-(*---------------------------- Exemplo 7 ----------------------------*)
 (*TESTE - Exemplo inv�lido: A varivel 'A' foi declarada em duplicidade*)
 PROGRAM TESTE123;
 	CONST

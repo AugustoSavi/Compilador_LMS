@@ -1,4 +1,3 @@
-(*---------------------------- Exemplo 6 ----------------------------*)
 (*TESTE - Exemplo V�lido com procedures*)
 PROGRAM TESTE123;
 	CONST

@@ -1,5 +1,4 @@
-(*---------------------------- Exemplo 9 ----------------------------*)
-(*TESTE - valido com duas procedures*)
+(*TESTE - invalido: procedure duplicada*)
 PROGRAM TESTE_PROC;
 	(*Proc A*)
 	PROCEDURE p_a(idd : INTEGER);
@@ -10,7 +9,7 @@ PROGRAM TESTE_PROC;
 	END;
 
 	(*Proc B com os mesmos dados de A*)
-	PROCEDURE p_b(idd : INTEGER);
+	PROCEDURE p_a(idd : INTEGER);
 		VAR
 		    X, Y, Z : INTEGER;
 	BEGIN

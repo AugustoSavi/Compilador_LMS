@@ -1,4 +1,3 @@
-(*---------------------------- Exemplo 3 ----------------------------*)
 (*TESTE - Exemplo iv�lido. O label_a n�o � v�lido para a procedure*)
 PROGRAM TESTEPROC2;
 LABEL label_a;

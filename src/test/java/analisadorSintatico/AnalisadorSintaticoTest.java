@@ -1,15 +1,16 @@
-package analisadorLexico;
+package analisadorSintatico;
 
+import analisadorLexico.AnalisadorLexico;
 import model.LexicoReturn;
 import model.Linha;
-import org.junit.Assert;
+import model.SintaticoReturn;
 import org.junit.Test;
 import utils.ManipuladorArquivos;
 
 import java.io.File;
 import java.util.Queue;
 
-public class AnalisadorLexicoTest {
+public class AnalisadorSintaticoTest {
 
     @Test
     public void AnalisadorLexicoTest() {
@@ -18,9 +19,9 @@ public class AnalisadorLexicoTest {
         for (File file : files) {
             Queue<Linha> linhas = new ManipuladorArquivos().readerLineByLine(file.getPath());
             LexicoReturn lexicoReturn = new AnalisadorLexico().analisadorLexico(linhas);
+            SintaticoReturn sintaticoReturn = new AnalisadorSintatico().analiseSintatica(lexicoReturn.tokens);
             System.out.println("----------------------------" + file.getName() + "----------------------------");
-            lexicoReturn.getNotificacaoConsoles().forEach(not -> System.out.println(not.getMensagem()));
-            Assert.assertEquals(1, lexicoReturn.notificacaoConsoles.size());
+            sintaticoReturn.getNotificacaoConsoles().forEach(not -> System.out.println(not.getMensagem()));
         }
     }
 }

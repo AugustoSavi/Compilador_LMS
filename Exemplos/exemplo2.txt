@@ -1,5 +1,4 @@
-(*---------------------------- Exemplo 2 ----------------------------*)
-(*TESTE - EXEMPLO V�LIDO*)
+(*TESTE - EXEMPLO VALIDO*)
 PROGRAM TESTE123;
 VAR x, A, B : INTEGER;
 

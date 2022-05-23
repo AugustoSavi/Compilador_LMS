@@ -1,4 +1,3 @@
-(*---------------------------- Exemplo 4 ----------------------------*)
 (*TESTE - Erro*)
 (*A derivao [66,26] 'COMANDO,INTEIRO' no foi encontrada na tabela de parsing.*)
 PROGRAM TESTE123;
