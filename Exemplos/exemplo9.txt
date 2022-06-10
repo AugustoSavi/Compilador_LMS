@@ -1,23 +1,17 @@
-(*TESTE - valido com duas procedures*)
-PROGRAM TESTE_PROC;
-	(*Proc A*)
-	PROCEDURE p_a(idd : INTEGER);
-		VAR
-		    X, Y, Z : INTEGER;
-	BEGIN
-		X := X * Y;
-	END;
-
-	(*Proc B com os mesmos dados de A*)
-	PROCEDURE p_b(idd : INTEGER);
-		VAR
-		    X, Y, Z : INTEGER;
-	BEGIN
-		X := Z *Z;
-	END;
-
-
+(*TESTE 9 - Utilizando Arrays*)
+PROGRAM TESTE123;
+	VAR
+		 X, Y, Z : INTEGER;
+		array_a : ARRAY[0..20] OF INTEGER;
 BEGIN
-	call p_a(10 + 2);
-	call p_b(5);
+	W := 10;
+	array_a[0] := W;
+	array_a[1] := 20;
+
+	FOR x := y > 2 TO 20 DO
+	BEGIN
+		array_a[x] := 2;
+	END;
+
+
 END.

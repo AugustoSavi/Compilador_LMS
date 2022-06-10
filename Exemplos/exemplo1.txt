@@ -1,17 +1,17 @@
-(*TESTE - Exemplo Valido*)
+(*TESTE - Exemplo V�lido*)
 PROGRAM TESTE123;
 	LABEL
 		label_a, label_b;
 
 	CONST
-		a = -1000;
+		a = -100;
 		b = -200;
 	VAR
 		 X, Y, Z : INTEGER;
 		array_a : ARRAY[0..20] OF INTEGER;
 		array_b, array_c, array_d : ARRAY[0..1000] OF INTEGER;
 
-	(*DeclaraÃ¯Â¿Â½Ã¯Â¿Â½o de procedure, inicia novo bloco*)
+	(*Declara��o de procedure, inicia novo bloco*)
 	PROCEDURE p_teste(idd : INTEGER);
 		LABEL
 			label_a, label_b;
@@ -30,7 +30,7 @@ PROGRAM TESTE123;
 	END;
 
 (*
-	- InÃ¯Â¿Â½cio do bloco principal
+	- In�cio do bloco principal
 *)
 
 BEGIN

@@ -32,7 +32,7 @@ public class AnalisadorSintatico {
                 valorSintatico = pilhaSintatica.peek();
 
             } catch (Exception e) {
-                notificacaoConsoles.add((new NotificacaoConsole(valorSintatico.getNumeroLinha(), "Valor entrada: " + valorEntrada.getPalavra() + "Esperado(a): " + valorSintatico.getPalavra())));
+                notificacaoConsoles.add((new NotificacaoConsole(valorSintatico.getNumeroLinha(), "Valor entrada: " + valorEntrada.getPalavra() + "Esperado: " + valorSintatico.getPalavra())));
                 break;
             }
 
@@ -66,7 +66,7 @@ public class AnalisadorSintatico {
                         pilhaSintatica.pop();
 
                     } else /* se não erro */ {
-                        notificacaoConsoles.add((new NotificacaoConsole(valorEntrada.getNumeroLinha(), "Valor entrada: " + valorEntrada.getPalavra() + " Esperado(a): " + valorSintatico.getPalavra())));
+                        notificacaoConsoles.add((new NotificacaoConsole(valorEntrada.getNumeroLinha(), "Valor entrada: " + valorEntrada.getPalavra() + " Esperado: " + valorSintatico.getPalavra())));
                         if (null != notificacaoConsoles.peek()) {
 //                            System.out.println(notificacaoConsoles.peek().getMensagem());
                         }

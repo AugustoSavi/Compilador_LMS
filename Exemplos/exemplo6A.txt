@@ -2,7 +2,6 @@
 PROGRAM TESTE123;
 	CONST
 		a = -100;
-
 		b = -200;
 	VAR
 		 X, Y, Z : INTEGER;
