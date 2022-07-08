@@ -13,5 +13,5 @@ import java.util.Queue;
 @AllArgsConstructor
 @NoArgsConstructor
 public class SintaticoReturn {
-    public Queue<NotificacaoConsole> notificacaoConsoles = new LinkedList<>();
+    private Queue<NotificacaoConsole> notificacaoConsoles = new LinkedList<>();
 }

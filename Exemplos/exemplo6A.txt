@@ -1,4 +1,4 @@
-(*TESTE - Exemplo V�lido com procedures*)
+(*TESTE - Exemplo Válido com procedures*)
 PROGRAM TESTE123;
 	CONST
 		a = -100;
@@ -8,7 +8,7 @@ PROGRAM TESTE123;
 		array_a : ARRAY[0..20] OF INTEGER;
 		array_b, array_c, array_d : ARRAY[0..1000] OF INTEGER;
 
-	(*Declara��o de procedure, inicia novo bloco*)
+	(*Declaração de procedure, inicia novo bloco*)
 	PROCEDURE p_teste(idd : INTEGER);
 		LABEL
 			label_a, label_b;

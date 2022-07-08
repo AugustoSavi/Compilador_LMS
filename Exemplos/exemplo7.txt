@@ -1,4 +1,4 @@
-(*TESTE - Exemplo v�lido: multiplica��o*)
+(*TESTE - Exemplo válido: multiplicação*)
 PROGRAM TESTE123;
 	CONST
 		a = -100;

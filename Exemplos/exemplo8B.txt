@@ -1,4 +1,4 @@
-(*TESTE - inv�lido: procedure duplicada*)
+(*TESTE - inválido: procedure duplicada*)
 PROGRAM TESTE_PROC;
 	(*Proc A*)
 	PROCEDURE p_a(idd : INTEGER);

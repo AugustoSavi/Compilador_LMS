@@ -1,4 +1,4 @@
-(*TESTE - V�lido. Uma express�o pode ser utilizada na procedure*)
+(*TESTE - Válido. Uma expressão pode ser utilizada na procedure*)
 PROGRAM TESTEPROC2;
 LABEL label_a;
 const a  = 100;

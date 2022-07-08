@@ -1,4 +1,4 @@
-(*TESTE - Exemplo inv�lido: A varivel 'A' foi declarada em duplicidade*)
+(*TESTE - Exemplo inválido: A varivel 'A' foi declarada em duplicidade*)
 PROGRAM TESTE123;
 	CONST
 		a = -100;

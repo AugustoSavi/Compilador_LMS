@@ -40,8 +40,8 @@ public class Compilador {
                 }
             }
 
-            if (!sintaticoReturn.notificacaoConsoles.isEmpty()) {
-                for (NotificacaoConsole notificacaoConsole : sintaticoReturn.notificacaoConsoles) {
+            if (!sintaticoReturn.getNotificacaoConsoles().isEmpty()) {
+                for (NotificacaoConsole notificacaoConsole : sintaticoReturn.getNotificacaoConsoles()) {
                     console.textAreaConsole.append(notificacaoConsole.getMensagem() + "\n");
                 }
             }

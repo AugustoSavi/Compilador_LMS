@@ -1,4 +1,4 @@
-(*TESTE - Exemplo iv�lido. O label_a n�o � v�lido para a procedure*)
+(*TESTE - Exemplo iválido. O label_a não é válido para a procedure*)
 PROGRAM TESTEPROC2;
 LABEL label_a;
 const a  = 100;
